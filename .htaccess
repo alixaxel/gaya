@@ -1,0 +1,23 @@
+#Deny from All
+Options Indexes FollowSymLinks
+
+<IfModule mod_rewrite.c>
+    #RewriteEngine On
+		RewriteCond %{REQUEST_FILENAME} !-f
+		RewriteCond %{REQUEST_FILENAME} !-d
+			RewriteRule (.*) index.php/$1/ [L]
+</IfModule>
+
+<IfModule mod_dir.c>
+	DirectorySlash On
+	DirectoryIndex index.php index.html
+</IfModule>
+
+<IfModule mod_autoindex.c>
+	IndexOptions FancyIndexing FoldersFirst IgnoreCase SuppressDescription SuppressHTMLPreamble SuppressIcon XHTML
+</IfModule>
+
+ErrorDocument 404 /_/error/404.html
+ErrorDocument 500 /_/error/500.html
+ErrorDocument 501 /_/error/501.html
+ErrorDocument 503 /_/error/503.html
